@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>-메-할일</title>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <link href="/css/base.css" rel="stylesheet" />
+    <link href="/css/normalize.css" rel="stylesheet" />
+    <script src="/js/main.js" defer></script>
+  </head>
+  <body class="">
+    <header id="header"></header>
+    <div id="content-box">
+      <form method="post" id="loginForm">
+        <div class="login_box">
+          <input
+            name="id"
+            type="text"
+            th:value="${id}"
+            placeholder="아이디 입력"
+          />
+          <input name="pw" type="password" placeholder="비밀번호 입력" />
+          <input type="submit" value="로그인" />
+          <input type="submit" value="회원가입" />
+        </div>
+        <p th:text="${loginFailReason}" class="login_failed_message"></p>
+      </form>
+      <div class="login"></div>
+    </div>
+    <footer id="footer"></footer>
+  </body>
+</html>

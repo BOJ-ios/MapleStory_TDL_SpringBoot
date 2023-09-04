@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>-메-할일</title>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <link href="/css/base.css" rel="stylesheet" />
+    <link href="/css/normalize.css" rel="stylesheet" />
+    <script src="/js/todo.js" defer></script>
+  </head>
+  <body>
+    <h1>Todo List</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Todo Name</th>
+          <th>Done</th>
+          <th>Action</th>
+          <th>
+            <button type="button" onclick="addNewTodo()">Add Todo</button>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="todo, todoStat : ${todoList}">
+          <td>
+            <input
+              type="text"
+              th:value="${todo.todoName}"
+              onblur="updateTodo(this)"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              th:checked="${todo.doneCheck}"
+              onchange="updateTodoStatus(this)"
+            />
+          </td>
+          <td>
+            <input type="hidden" th:value="${todo.id}" />
+            <button type="button" onclick="deleteTodo(this)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
