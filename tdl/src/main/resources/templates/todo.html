@@ -8,16 +8,155 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
     <link href="/css/base.css" rel="stylesheet" />
     <link href="/css/normalize.css" rel="stylesheet" />
+    <link href="/css/todo.css" rel="stylesheet" />
     <script src="/js/todo.js" defer></script>
+    <script src="/js/imageToggle.js" defer></script>
   </head>
   <body>
     <h1>Todo List</h1>
+    <div>
+      <p id="clock"></p>
+    </div>
+    <div class="width-auto-max">
+      <!-- 익몬 용가리 헤이븐 뭐 그런거 선택 -->
+      <div class="quest_imgs">
+        <!-- 퀘스트 토클 버튼 -->
+        <div>
+          <input type="hidden" th:value="1" />
+          <img
+            class="quest_img"
+            src="image/선택퀘/유니온.png"
+            onclick="toggleImage(this)"
+          />
+        </div>
+        <div>
+          <input type="hidden" th:value="1" />
+          <img
+            class="quest_img"
+            src="image/선택퀘/익몬.png"
+            onclick="toggleImage(this)"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="simball_12 width-auto-max">
+      <div class="simball_6">
+        <div class="simball_3">
+          <div>
+            <input type="hidden" th:value="0" />
+            <img
+              class="simball"
+              src="image/아케인심볼/여로.png"
+              onclick="toggleImage(this)"
+            />
+          </div>
+          <div>
+            <input type="hidden" th:value="0" /><img
+              class="simball"
+              src="image/아케인심볼/츄츄.png"
+              onclick="toggleImage(this)"
+            />
+          </div>
+
+          <div>
+            <input type="hidden" th:value="0" /><img
+              class="simball"
+              src="image/아케인심볼/레헬른.png"
+              onclick="toggleImage(this)"
+            />
+          </div>
+        </div>
+        <div class="simball_3">
+          <div>
+            <input type="hidden" th:value="0" />
+            <img
+              class="simball"
+              src="image/아케인심볼/아르카나.png"
+              onclick="toggleImage(this)"
+            />
+          </div>
+          <div>
+            <input type="hidden" th:value="0" />
+            <img
+              class="simball"
+              src="image/아케인심볼/모라스.png"
+              onclick="toggleImage(this)"
+            />
+          </div>
+          <div>
+            <input type="hidden" th:value="0" />
+            <img
+              class="simball"
+              src="image/아케인심볼/에스페라.png"
+              onclick="toggleImage(this)"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="simball_6">
+        <div class="simball_3">
+          <div>
+            <input type="hidden" th:value="0" />
+            <img
+              class="simball"
+              src="image/어센틱심볼/세르니움.png"
+              onclick="toggleImage(this)"
+            />
+          </div>
+          <div>
+            <input type="hidden" th:value="0" />
+            <img
+              class="simball"
+              src="image/어센틱심볼/아르크스.png"
+              onclick="toggleImage(this)"
+            />
+          </div>
+          <div>
+            <input type="hidden" th:value="0" />
+            <img
+              class="simball"
+              src="image/어센틱심볼/오디움.png"
+              onclick="toggleImage(this)"
+            />
+          </div>
+        </div>
+        <div class="simball_3">
+          <div>
+            <input type="hidden" th:value="0" />
+            <img
+              class="simball"
+              src="image/어센틱심볼/도원경.png"
+              onclick="toggleImage(this)"
+            />
+          </div>
+          <div>
+            <input type="hidden" th:value="0" />
+            <img
+              class="simball"
+              src="image/어센틱심볼/아르테리아.png"
+              onclick="toggleImage(this)"
+            />
+          </div>
+          <div>
+            <input type="hidden" th:value="0" />
+            <img
+              class="simball"
+              src="image/어센틱심볼/카르시온.png"
+              onclick="toggleImage(this)"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 니 알아서 추가 -->
     <table>
       <thead>
         <tr>
-          <th>Todo Name</th>
-          <th>Done</th>
-          <th>Action</th>
+          <th>초기화</th>
+          <th>내용</th>
+          <th>완료?</th>
+          <th>삭제</th>
           <th>
             <button type="button" onclick="addNewTodo()">Add Todo</button>
           </th>
@@ -26,16 +165,23 @@
       <tbody>
         <tr th:each="todo, todoStat : ${todoList}">
           <td>
+            <button
+              type="button"
+              th:text="${todo.dailyWeekly ? '주간' : '일일'}"
+              onclick="dailyWeeklyChange(this)"
+            ></button>
+          </td>
+          <td>
             <input
               type="text"
-              th:value="${todo.todoName}"
+              th:value="${todo.value}"
               onblur="updateTodo(this)"
             />
           </td>
           <td>
             <input
               type="checkbox"
-              th:checked="${todo.doneCheck}"
+              th:checked="${todo.status}"
               onchange="updateTodoStatus(this)"
             />
           </td>

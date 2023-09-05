@@ -21,7 +21,7 @@ public class Users {
     // 기본 생성자
   }
 
-  public Users(String uuid, String id, String pw) {
+  public Users(String id, String pw, String uuid) {
     this.uuid = uuid;
     this.id = id;
     this.pw = pw;

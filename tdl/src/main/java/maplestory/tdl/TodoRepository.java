@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TodoRepository extends JpaRepository<Todo, Long> {
-  List<Todo> findAllById(Long id);
+public interface TodoRepository extends JpaRepository<TodoCommon, Long> {
+  List<TodoCommon> findAllById(Long id);
 
-  List<Todo> findAllByUUID(String UUID);
+  List<TodoCommon> findAllByUUID(String UUID);
 }

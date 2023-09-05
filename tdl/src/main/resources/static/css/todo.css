@@ -1,0 +1,63 @@
+div {
+  border: 1px solid white;
+}
+.toBlack {
+  filter: grayscale(100%);
+}
+
+.width-auto-max {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+  padding: 20px;
+}
+
+.quest_imgs {
+  width: 100%;
+  height: min-content;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: first baseline;
+}
+.quest_img {
+  border: 1px solid white;
+  width: 100px;
+  height: 100px;
+  margin: 2px;
+}
+.selected_quests {
+  width: 100%;
+  height: min-content;
+}
+
+.simball {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  margin: 2px;
+  padding: 2px;
+}
+.simball_3 {
+  display: flex;
+  width: min-content;
+  height: min-content;
+  justify-content: space-around;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2px;
+}
+.simball_6 {
+  width: min-content;
+  height: min-content;
+  margin: 10px;
+  padding: 5px;
+}
+.simball_12 {
+  width: 100%;
+  height: min-content;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
