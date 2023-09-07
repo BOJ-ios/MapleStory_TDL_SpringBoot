@@ -16,16 +16,33 @@
       <form method="post" id="loginForm">
         <div class="login_box">
           <input
-            name="id"
             type="text"
             th:value="${id}"
+            id="id"
+            name="id"
             placeholder="아이디 입력"
           />
-          <input name="pw" type="password" placeholder="비밀번호 입력" />
-          <input type="submit" value="로그인" />
-          <input type="submit" value="회원가입" />
+          <input
+            type="password"
+            id="pw"
+            name="pw"
+            placeholder="비밀번호 입력"
+          />
+          <input type="submit" id="login" value="로그인" />
+          <input type="submit" id="register" value="회원가입" />
         </div>
-        <p th:text="${loginFailReason}" class="login_failed_message"></p>
+        <div
+          class="errorMSG"
+          th:text="${errorMsg}"
+          th:style="${errorMsg_Style}"
+        ></div>
+        <div class="errorMSG" id="idMsg" th:style="${idMsg_Style}">
+          아이디: 5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용
+          가능합니다.
+        </div>
+        <div class="errorMSG" id="pwMsg" th:style="${pwMsg_Style}">
+          비밀번호: 8~16자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.
+        </div>
       </form>
       <div class="login"></div>
     </div>

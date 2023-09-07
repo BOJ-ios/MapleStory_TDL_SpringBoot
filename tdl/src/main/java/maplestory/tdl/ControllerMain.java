@@ -1,5 +1,6 @@
 package maplestory.tdl;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,15 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class ControllerMain {
+  public static final String dpNone = "display: none";
+  public static final String dpBlock = "display: block";
+
   // !처음 접속 페이지
   @GetMapping("/")
   public String main_Page(Model model) {
+    model.addAttribute("errorMsg_Style", dpNone);
+    model.addAttribute("idMsg_Style", dpNone);
+    model.addAttribute("pwMsg_Style", dpNone);
     return "main";
   }
 
@@ -23,60 +30,108 @@ public class ControllerMain {
 
   @PostMapping("/login")
   public String login_validation(HttpSession session, Model model, String id, String pw) {
-    Users user = userRep.findById(id).orElse(null);
-    // *유저 존재 */
-    if (user != null) {
-      // *비밀번호 정답 */
-      if (user.getPW().equals(pw)) {
-        session.setAttribute("UUID", user.getUUID());
-        System.out.println("-------로그인정보-------");
-        System.out.println("id : " + user.getID());
-        System.out.println("pw : " + user.getPW());
-        System.out.println("uuid : " + user.getUUID());
-        System.out.println("---------------------\n");
-        return "redirect:/todo";
-      }
-      // *비밀번호 오류 */
-      System.out.println("-------비밀번호 오류-------");
-      System.out.println("id : " + user.getID());
-      System.out.println("입력한 pw : " + pw);
-      System.out.println("정확한 pw : " + user.getPW());
-      System.out.println("---------------------\n");
-      model.addAttribute("id", id);
-      model.addAttribute("loginFailReason", "비밀번호가 틀렸습니다.");
+    model.addAttribute("idMsg_Style", dpNone);
+    model.addAttribute("pwMsg_Style", dpNone);
+    int validation = checkEmpty(id, pw);
+    if (validation == 0) { // !아이디 안적음
+      model.addAttribute("errorMsg_Style", dpBlock);
+      model.addAttribute("errorMsg", "아이디를 입력해주세요.");
       return "main";
+    } else if (validation == 1) { // !비밀번호 안적음
+      model.addAttribute("id", id);
+      model.addAttribute("errorMsg_Style", dpBlock);
+      model.addAttribute("errorMsg", "비밀번호를 입력해주세요.");
+      return "main";
+    } else { // ! 둘다 적음
+      // !암호화
+      SHA256 hash = new SHA256();
+      try {
+        pw = hash.encrypt(pw + id);
+      } catch (NoSuchAlgorithmException e) {
+        e.printStackTrace();
+      }
+      Users user = userRep.findById(id).orElse(null);
+      // *유저 존재 */
+      if (user != null) {
+        // *비밀번호 정답 */
+        if (user.getPW().equals(pw)) {
+          session.setAttribute("UUID", user.getUUID());
+          return "redirect:/todo";
+        }
+      }
+      // *비번 틀림 */
+      model.addAttribute("id", id);
+      model.addAttribute("errorMsg_Style", dpBlock);
+      model.addAttribute("errorMsg", "아이디 또는 비밀번호를 잘못 입력했습니다.");
     }
-    // *유저 없음 */
-    System.out.println("-------존재하지 않는 유저-------");
-    System.out.println("id : " + id);
-    System.out.println("---------------------\n");
-    model.addAttribute("id", id);
-    model.addAttribute("loginFailReason", "존재하지않는 아이디입니다.");
     return "main";
   }
 
   // !회원가입
   @PostMapping("/register")
   public String register_validation(HttpSession session, Model model, String id, String pw) {
-    Users user = userRep.findById(id).orElse(null);
-    // *유저 존재 */
-    System.out.println("-------회원가입 시도-------");
-    if (user != null) {
-      System.out.println("-------이미 존재하는 유저-------");
-      System.out.println("id : " + id);
-      System.out.println("---------------------\n");
-      model.addAttribute("loginFailReason", "이미 존재하는 아이디입니다");
+    int validation = checkEmpty(id, pw);
+    model.addAttribute("errorMsg_Style", dpBlock);
+    if (validation == 0) {
+      model.addAttribute("errorMsg", "아이디를 입력해주세요.");
+      return "main";
+    } else if (validation == 1) {
+      model.addAttribute("errorMsg", "비밀번호를 입력해주세요.");
+      return "main";
+    } else {
+      model.addAttribute("errorMsg_Style", dpNone);
+      // 아이디 유효성 검사
+      if (!isValidId(id)) {
+        model.addAttribute("idMsg_Style", dpBlock);
+        return "main";
+      }
+      // 비밀번호 유효성 검사
+      if (!isValidPassword(pw)) {
+        model.addAttribute("pwMsg_Style", dpBlock);
+        return "main";
+      }
+      model.addAttribute("idMsg_Style", dpNone);
+      model.addAttribute("pwMsg_Style", dpNone);
+      Users user = userRep.findById(id).orElse(null);
+      if (user != null) {
+        model.addAttribute("errorMsg_Style", dpBlock);
+        model.addAttribute("errorMsg", "이미 존재하는 아이디입니다.");
+        return "main";
+      }
+      // 암호화
+      SHA256 hash = new SHA256();
+      try {
+        pw = hash.encrypt(pw + id);
+      } catch (NoSuchAlgorithmException e) {
+        e.printStackTrace();
+      }
+      Users new_user = new Users(id, pw, UUID.randomUUID().toString());
+      userRep.save(new_user);
+      model.addAttribute("errorMsg_Style", dpBlock);
+      model.addAttribute("errorMsg", "회원가입 완료.");
       return "main";
     }
-    // *유저 없음 */
-    model.addAttribute("loginFailReason", "회원가입 완료.");
-    Users new_user = new Users(id, pw, UUID.randomUUID().toString());
-    System.out.println("-------회원가입 완료-------");
-    System.out.println("id : " + new_user.getID());
-    System.out.println("pw : " + new_user.getPW());
-    System.out.println("uuid : " + new_user.getUUID());
-    System.out.println("---------------------\n");
-    userRep.save(new_user);
-    return "main";
+  }
+
+  // !아이디 유효성 검사 메서드
+  private boolean isValidId(String id) {
+    // 아이디: 5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.
+    return id.matches("[a-zA-Z0-9_-]{5,20}");
+  }
+
+  // !비밀번호 유효성 검사 메서드
+  private boolean isValidPassword(String pw) {
+    // 비밀번호: 8~16자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.
+    return pw.matches("[a-zA-Z0-9!@#$%^&*()_+\\-=\\[\\]{};':\",.<>?]{8,16}");
+  }
+
+  // !빈칸 확인
+  public static int checkEmpty(String id, String pw) {
+    if (id == null || id.equals("")) {
+      return 0;
+    } else if (pw == null || pw.equals("")) {
+      return 1;
+    }
+    return 2;
   }
 }

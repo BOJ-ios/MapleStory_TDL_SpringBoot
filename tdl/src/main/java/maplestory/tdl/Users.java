@@ -9,10 +9,10 @@ public class Users {
   @Column(length = 36)
   private String uuid;
   @Id
-  @Column(length = 255)
+  @Column(length = 20)
   private String id;
 
-  @Column(length = 255)
+  @Column(length = 64)
   private String pw;
 
   // 생성자, 게터, 세터 등 필요한 다른 메서드들을 추가할 수 있습니다.
