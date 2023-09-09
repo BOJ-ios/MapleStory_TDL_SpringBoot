@@ -1,4 +1,4 @@
-package maplestory.tdl;
+package maplestory.tdl.Controller;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
@@ -9,9 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import jakarta.servlet.http.HttpSession;
+import maplestory.tdl.DataBase.Users;
+import maplestory.tdl.DataBase.UsersRepository;
+import maplestory.tdl.Service.SHA256;
 
 @Controller
-public class ControllerMain {
+public class LoginResister_C {
   public static final String dpNone = "display: none";
   public static final String dpBlock = "display: block";
 
@@ -46,7 +49,7 @@ public class ControllerMain {
       // !암호화
       SHA256 hash = new SHA256();
       try {
-        pw = hash.encrypt(pw + id);
+        pw = hash.encrypt(pw + id.substring(0, 3));
       } catch (NoSuchAlgorithmException e) {
         e.printStackTrace();
       }
@@ -101,7 +104,7 @@ public class ControllerMain {
       // 암호화
       SHA256 hash = new SHA256();
       try {
-        pw = hash.encrypt(pw + id);
+        pw = hash.encrypt(pw + id.substring(0, 3));
       } catch (NoSuchAlgorithmException e) {
         e.printStackTrace();
       }
@@ -113,13 +116,13 @@ public class ControllerMain {
     }
   }
 
-  // !아이디 유효성 검사 메서드
+  // !아이디 유효성 검사
   private boolean isValidId(String id) {
     // 아이디: 5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.
     return id.matches("[a-zA-Z0-9_-]{5,20}");
   }
 
-  // !비밀번호 유효성 검사 메서드
+  // !비밀번호 유효성 검사
   private boolean isValidPassword(String pw) {
     // 비밀번호: 8~16자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.
     return pw.matches("[a-zA-Z0-9!@#$%^&*()_+\\-=\\[\\]{};':\",.<>?]{8,16}");

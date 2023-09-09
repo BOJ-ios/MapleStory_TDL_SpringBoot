@@ -1,4 +1,4 @@
-package maplestory.tdl;
+package maplestory.tdl.DataBase;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

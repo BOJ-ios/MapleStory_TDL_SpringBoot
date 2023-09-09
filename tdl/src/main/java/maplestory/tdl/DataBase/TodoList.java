@@ -1,4 +1,4 @@
-package maplestory.tdl;
+package maplestory.tdl.DataBase;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,8 +8,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "todo_common")
-public class TodoCommon {
+@Table(name = "todo_list")
+public class TodoList {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
@@ -28,11 +28,11 @@ public class TodoCommon {
   private boolean dailyWeekly;
 
   // *Constructors
-  public TodoCommon() {
+  public TodoList() {
     // Default constructor
   }
 
-  public TodoCommon(Long id, String UUID, String value, boolean status, boolean dailyWeekly) {
+  public TodoList(Long id, String UUID, String value, boolean status, boolean dailyWeekly) {
     this.id = id;
     this.UUID = UUID;
     this.value = value;

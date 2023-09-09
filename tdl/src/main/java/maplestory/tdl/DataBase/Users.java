@@ -1,4 +1,4 @@
-package maplestory.tdl;
+package maplestory.tdl.DataBase;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

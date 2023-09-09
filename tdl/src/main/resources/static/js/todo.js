@@ -27,6 +27,7 @@ function updateTodo(input) {
   };
   xhr.send(JSON.stringify({ value: newValue, id: id }));
 }
+
 //! Todo 초기화일 업데이트
 function dailyWeeklyChange(button) {
   var text = button.textContent;

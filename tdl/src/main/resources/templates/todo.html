@@ -16,23 +16,28 @@
     <h1>Todo List</h1>
     <div>
       <p id="clock"></p>
+      <form method="post" action="/save-character">
+        <label for="characterName">캐릭터 이름:</label>
+        <input type="text" id="characterName" name="characterName" required />
+        <button type="submit">등록</button>
+      </form>
     </div>
     <div class="width-auto-max">
       <!-- 익몬 용가리 헤이븐 뭐 그런거 선택 -->
-      <div class="quest_imgs">
+      <div class="quest-imgs-box">
         <!-- 퀘스트 토클 버튼 -->
-        <div>
+        <div class="quest-data-wrap">
           <input type="hidden" th:value="1" />
           <img
-            class="quest_img"
+            class="quest-img"
             src="image/선택퀘/유니온.png"
             onclick="toggleImage(this)"
           />
         </div>
-        <div>
+        <div class="quest-data-wrap">
           <input type="hidden" th:value="1" />
           <img
-            class="quest_img"
+            class="quest-img"
             src="image/선택퀘/익몬.png"
             onclick="toggleImage(this)"
           />
@@ -40,10 +45,10 @@
       </div>
     </div>
 
-    <div class="simball_12 width-auto-max">
-      <div class="simball_6">
-        <div class="simball_3">
-          <div>
+    <div class="simball-12 width-auto-max">
+      <div class="simball-6">
+        <div class="simball-3">
+          <div simball-img-data-wrap>
             <input type="hidden" th:value="0" />
             <img
               class="simball"
@@ -51,7 +56,7 @@
               onclick="toggleImage(this)"
             />
           </div>
-          <div>
+          <div simball-img-data-wrap>
             <input type="hidden" th:value="0" /><img
               class="simball"
               src="image/아케인심볼/츄츄.png"
@@ -59,7 +64,7 @@
             />
           </div>
 
-          <div>
+          <div simball-img-data-wrap>
             <input type="hidden" th:value="0" /><img
               class="simball"
               src="image/아케인심볼/레헬른.png"
@@ -67,8 +72,8 @@
             />
           </div>
         </div>
-        <div class="simball_3">
-          <div>
+        <div class="simball-3">
+          <div simball-img-data-wrap>
             <input type="hidden" th:value="0" />
             <img
               class="simball"
@@ -76,7 +81,7 @@
               onclick="toggleImage(this)"
             />
           </div>
-          <div>
+          <div simball-img-data-wrap>
             <input type="hidden" th:value="0" />
             <img
               class="simball"
@@ -84,7 +89,7 @@
               onclick="toggleImage(this)"
             />
           </div>
-          <div>
+          <div simball-img-data-wrap>
             <input type="hidden" th:value="0" />
             <img
               class="simball"
@@ -94,9 +99,9 @@
           </div>
         </div>
       </div>
-      <div class="simball_6">
-        <div class="simball_3">
-          <div>
+      <div class="simball-6">
+        <div class="simball-3">
+          <div simball-img-data-wrap>
             <input type="hidden" th:value="0" />
             <img
               class="simball"
@@ -104,7 +109,7 @@
               onclick="toggleImage(this)"
             />
           </div>
-          <div>
+          <div simball-img-data-wrap>
             <input type="hidden" th:value="0" />
             <img
               class="simball"
@@ -112,7 +117,7 @@
               onclick="toggleImage(this)"
             />
           </div>
-          <div>
+          <div simball-img-data-wrap>
             <input type="hidden" th:value="0" />
             <img
               class="simball"
@@ -121,8 +126,8 @@
             />
           </div>
         </div>
-        <div class="simball_3">
-          <div>
+        <div class="simball-3">
+          <div simball-img-data-wrap>
             <input type="hidden" th:value="0" />
             <img
               class="simball"
@@ -130,7 +135,7 @@
               onclick="toggleImage(this)"
             />
           </div>
-          <div>
+          <div simball-img-data-wrap>
             <input type="hidden" th:value="0" />
             <img
               class="simball"
@@ -138,7 +143,7 @@
               onclick="toggleImage(this)"
             />
           </div>
-          <div>
+          <div simball-img-data-wrap>
             <input type="hidden" th:value="0" />
             <img
               class="simball"

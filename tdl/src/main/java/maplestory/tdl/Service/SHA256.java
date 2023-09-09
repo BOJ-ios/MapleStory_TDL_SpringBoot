@@ -1,4 +1,4 @@
-package maplestory.tdl;
+package maplestory.tdl.Service;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
