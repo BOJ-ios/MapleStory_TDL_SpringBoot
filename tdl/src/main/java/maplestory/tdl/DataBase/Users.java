@@ -7,13 +7,13 @@ import jakarta.persistence.Id;
 @Entity
 public class Users {
   @Column(length = 36)
-  private String uuid;
+  private String UUID;
   @Id
   @Column(length = 20)
-  private String id;
+  private String ID;
 
   @Column(length = 64)
-  private String pw;
+  private String PW;
 
   // 생성자, 게터, 세터 등 필요한 다른 메서드들을 추가할 수 있습니다.
 
@@ -21,34 +21,34 @@ public class Users {
     // 기본 생성자
   }
 
-  public Users(String id, String pw, String uuid) {
-    this.uuid = uuid;
-    this.id = id;
-    this.pw = pw;
+  public Users(String ID, String PW, String UUID) {
+    this.UUID = UUID;
+    this.ID = ID;
+    this.PW = PW;
   }
 
   // 게터와 세터 메서드
   public String getUUID() {
-    return uuid;
+    return UUID;
   }
 
-  public void setUUID(String uuid) {
-    this.uuid = uuid;
+  public void setUUID(String UUID) {
+    this.UUID = UUID;
   }
 
   public String getID() {
-    return id;
+    return ID;
   }
 
-  public void setID(String id) {
-    this.id = id;
+  public void setID(String ID) {
+    this.ID = ID;
   }
 
   public String getPW() {
-    return pw;
+    return PW;
   }
 
-  public void setPW(String pw) {
-    this.pw = pw;
+  public void setPW(String PW) {
+    this.PW = PW;
   }
 }

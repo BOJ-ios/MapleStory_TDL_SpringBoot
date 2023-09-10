@@ -1,5 +1,6 @@
 package maplestory.tdl.DataBase;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -7,22 +8,35 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "quest_simball") // 테이블 이름을 지정해야 합니다.
 public class QuestSimball {
+  @Column(name = "UUID")
+  private String UUID;
   @Id
-  private String uuid;
-
-  private String characterName;
-  private boolean vanishingJourney;
-  private boolean chuChu;
-  private boolean lachelein;
-  private boolean arcana;
-  private boolean morass;
-  private boolean esfera;
-  private boolean cernium;
-  private boolean arcus;
-  private boolean odium;
-  private boolean shangriLa;
-  private boolean arteria;
-  private boolean carcion;
+  @Column(name = "Character_Name")
+  private String Character_Name;
+  @Column(name = "Vanishing_Journey")
+  private boolean Vanishing_Journey;
+  @Column(name = "ChuChu")
+  private boolean ChuChu;
+  @Column(name = "Lachelein")
+  private boolean Lachelein;
+  @Column(name = "Arcana")
+  private boolean Arcana;
+  @Column(name = "Morass")
+  private boolean Morass;
+  @Column(name = "Esfera")
+  private boolean Esfera;
+  @Column(name = "Cernium")
+  private boolean Cernium;
+  @Column(name = "Arcus")
+  private boolean Arcus;
+  @Column(name = "Odium")
+  private boolean Odium;
+  @Column(name = "Shangri_La")
+  private boolean Shangri_La;
+  @Column(name = "Arteria")
+  private boolean Arteria;
+  @Column(name = "Carcion")
+  private boolean Carcion;
 
   // 생성자, getter 및 setter 등의 필요한 메서드를 추가할 수 있습니다.
 
@@ -30,136 +44,141 @@ public class QuestSimball {
   public QuestSimball() {
   }
 
-  public QuestSimball(String uuid, String characterName, boolean vanishingJourney,
-      boolean chuChu, boolean lachelein, boolean arcana, boolean morass,
-      boolean esfera, boolean cernium, boolean arcus, boolean odium,
-      boolean shangriLa, boolean arteria, boolean carcion) {
-    this.uuid = uuid;
-    this.characterName = characterName;
-    this.vanishingJourney = vanishingJourney;
-    this.chuChu = chuChu;
-    this.lachelein = lachelein;
-    this.arcana = arcana;
-    this.morass = morass;
-    this.esfera = esfera;
-    this.cernium = cernium;
-    this.arcus = arcus;
-    this.odium = odium;
-    this.shangriLa = shangriLa;
-    this.arteria = arteria;
-    this.carcion = carcion;
+  public QuestSimball(String UUID, String Character_Name) {
+    this.UUID = UUID;
+    this.Character_Name = Character_Name;
+  }
+
+  public QuestSimball(String UUID, String Character_Name, boolean Vanishing_Journey,
+      boolean ChuChu, boolean Lachelein, boolean Arcana, boolean Morass,
+      boolean Esfera, boolean Cernium, boolean Arcus, boolean Odium,
+      boolean Shangri_La, boolean Arteria, boolean Carcion) {
+    this.UUID = UUID;
+    this.Character_Name = Character_Name;
+    this.Vanishing_Journey = Vanishing_Journey;
+    this.ChuChu = ChuChu;
+    this.Lachelein = Lachelein;
+    this.Arcana = Arcana;
+    this.Morass = Morass;
+    this.Esfera = Esfera;
+    this.Cernium = Cernium;
+    this.Arcus = Arcus;
+    this.Odium = Odium;
+    this.Shangri_La = Shangri_La;
+    this.Arteria = Arteria;
+    this.Carcion = Carcion;
   }
 
   // getter 및 setter 메서드
-  public String getUuid() {
-    return uuid;
+  public String getUUID() {
+    return UUID;
   }
 
-  public void setUuid(String uuid) {
-    this.uuid = uuid;
+  public void setUUID(String UUID) {
+    this.UUID = UUID;
   }
 
   public String getCharacterName() {
-    return characterName;
+    return Character_Name;
   }
 
-  public void setCharacterName(String characterName) {
-    this.characterName = characterName;
+  public void setCharacterName(String Character_Name) {
+    this.Character_Name = Character_Name;
   }
 
-  public boolean isVanishingJourney() {
-    return vanishingJourney;
+  public boolean getVanishingJourney() {
+    return Vanishing_Journey;
   }
 
-  public void setVanishingJourney(boolean vanishingJourney) {
-    this.vanishingJourney = vanishingJourney;
+  public void setVanishingJourney(boolean Vanishing_Journey) {
+    this.Vanishing_Journey = Vanishing_Journey;
   }
 
-  public boolean isChuChu() {
-    return chuChu;
+  public boolean getChuChu() {
+    return ChuChu;
   }
 
-  public void setChuChu(boolean chuChu) {
-    this.chuChu = chuChu;
+  public void setChuChu(boolean ChuChu) {
+    this.ChuChu = ChuChu;
   }
 
-  public boolean isLachelein() {
-    return lachelein;
+  public boolean getLachelein() {
+    return Lachelein;
   }
 
-  public void setLachelein(boolean lachelein) {
-    this.lachelein = lachelein;
+  public void setLachelein(boolean Lachelein) {
+    this.Lachelein = Lachelein;
   }
 
-  public boolean isArcana() {
-    return arcana;
+  public boolean getArcana() {
+    return Arcana;
   }
 
-  public void setArcana(boolean arcana) {
-    this.arcana = arcana;
+  public void setArcana(boolean Arcana) {
+    this.Arcana = Arcana;
   }
 
-  public boolean isMorass() {
-    return morass;
+  public boolean getMorass() {
+    return Morass;
   }
 
-  public void setMorass(boolean morass) {
-    this.morass = morass;
+  public void setMorass(boolean Morass) {
+    this.Morass = Morass;
   }
 
-  public boolean isEsfera() {
-    return esfera;
+  public boolean getEsfera() {
+    return Esfera;
   }
 
-  public void setEsfera(boolean esfera) {
-    this.esfera = esfera;
+  public void setEsfera(boolean Esfera) {
+    this.Esfera = Esfera;
   }
 
-  public boolean isCernium() {
-    return cernium;
+  public boolean getCernium() {
+    return Cernium;
   }
 
-  public void setCernium(boolean cernium) {
-    this.cernium = cernium;
+  public void setCernium(boolean Cernium) {
+    this.Cernium = Cernium;
   }
 
-  public boolean isArcus() {
-    return arcus;
+  public boolean getArcus() {
+    return Arcus;
   }
 
-  public void setArcus(boolean arcus) {
-    this.arcus = arcus;
+  public void setArcus(boolean Arcus) {
+    this.Arcus = Arcus;
   }
 
-  public boolean isOdium() {
-    return odium;
+  public boolean getOdium() {
+    return Odium;
   }
 
-  public void setOdium(boolean odium) {
-    this.odium = odium;
+  public void setOdium(boolean Odium) {
+    this.Odium = Odium;
   }
 
-  public boolean isShangriLa() {
-    return shangriLa;
+  public boolean getShangriLa() {
+    return Shangri_La;
   }
 
-  public void setShangriLa(boolean shangriLa) {
-    this.shangriLa = shangriLa;
+  public void setShangriLa(boolean Shangri_La) {
+    this.Shangri_La = Shangri_La;
   }
 
-  public boolean isArteria() {
-    return arteria;
+  public boolean getArteria() {
+    return Arteria;
   }
 
-  public void setArteria(boolean arteria) {
-    this.arteria = arteria;
+  public void setArteria(boolean Arteria) {
+    this.Arteria = Arteria;
   }
 
-  public boolean isCarcion() {
-    return carcion;
+  public boolean getCarcion() {
+    return Carcion;
   }
 
-  public void setCarcion(boolean carcion) {
-    this.carcion = carcion;
+  public void setCarcion(boolean Carcion) {
+    this.Carcion = Carcion;
   }
 }

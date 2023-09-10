@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import maplestory.tdl.DataBase.QuestAccountDaily;
+import maplestory.tdl.DataBase.QuestAccountDailyRep;
 import maplestory.tdl.DataBase.TodoList;
 import maplestory.tdl.DataBase.TodoRepository;
 
@@ -24,6 +26,8 @@ public class Todo_C {
   // !할일
   @Autowired
   private TodoRepository todoRep;
+  @Autowired
+  private QuestAccountDailyRep qadRep;
 
   @GetMapping("/todo")
   public String todo(HttpSession session, Model model) {
@@ -32,6 +36,22 @@ public class Todo_C {
       return "invalid_access_pop";
     }
     String UUID = (String) session.getAttribute("UUID");
+
+    // !계정일퀘
+    QuestAccountDaily qad = qadRep.findByUUID(UUID).orElse(null);
+    model.addAttribute("Urus", qad.getUrus());
+    model.addAttribute("Extreme_Monster", qad.getExtremeMonster());
+    model.addAttribute("Daily_Monster", qad.getDailyMonster());
+    model.addAttribute("Maple_M", qad.getMapleM());
+    model.addAttribute("Union_Coin", qad.getUnionCoin());
+    model.addAttribute("Daily_Gift", qad.getDailyGift());
+    model.addAttribute("Expertise", qad.getExpertise());
+    model.addAttribute("Golden_Wagen", qad.getGoldenWagen());
+    // !캐릭일퀘
+
+    // !캐릭주퀘
+
+    // !잡다한 todo
     List<TodoList> todoList = todoRep.findAllByUUID(UUID);
     model.addAttribute("todoList", todoList);
     return "todo";

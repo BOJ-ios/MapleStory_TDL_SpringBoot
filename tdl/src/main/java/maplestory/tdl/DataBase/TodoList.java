@@ -12,37 +12,37 @@ import jakarta.persistence.Table;
 public class TodoList {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id")
-  private Long id;
+  @Column(name = "ID")
+  private Long ID;
 
   @Column(name = "UUID", length = 36, nullable = false)
   private String UUID;
 
-  @Column(name = "value", length = 200)
-  private String value;
+  @Column(name = "Value", length = 200)
+  private String Value;
 
-  @Column(name = "status", nullable = false)
-  private boolean status;
+  @Column(name = "Status", nullable = false)
+  private boolean Status;
 
-  @Column(name = "daily_weekly", nullable = false)
-  private boolean dailyWeekly;
+  @Column(name = "Daily_Weekly", nullable = false)
+  private boolean Daily_Weekly;
 
   // *Constructors
   public TodoList() {
     // Default constructor
   }
 
-  public TodoList(Long id, String UUID, String value, boolean status, boolean dailyWeekly) {
-    this.id = id;
+  public TodoList(Long ID, String UUID, String Value, boolean Status, boolean Daily_Weekly) {
+    this.ID = ID;
     this.UUID = UUID;
-    this.value = value;
-    this.status = status;
-    this.dailyWeekly = dailyWeekly;
+    this.Value = Value;
+    this.Status = Status;
+    this.Daily_Weekly = Daily_Weekly;
   }
 
   // *Getter
   public long getId() {
-    return id;
+    return ID;
   }
 
   public String getUUID() {
@@ -50,15 +50,15 @@ public class TodoList {
   }
 
   public String getValue() {
-    return value;
+    return Value;
   }
 
   public boolean getStatus() {
-    return status;
+    return Status;
   }
 
   public boolean getDailyWeekly() {
-    return dailyWeekly;
+    return Daily_Weekly;
   }
 
   // *Setter
@@ -66,15 +66,15 @@ public class TodoList {
     this.UUID = UUID;
   }
 
-  public void setValue(String value) {
-    this.value = value;
+  public void setValue(String Value) {
+    this.Value = Value;
   }
 
-  public void setStatus(boolean status) {
-    this.status = status;
+  public void setStatus(boolean Status) {
+    this.Status = Status;
   }
 
-  public void setDailyWeekly(boolean dailyWeekly) {
-    this.dailyWeekly = dailyWeekly;
+  public void setDailyWeekly(boolean Daily_Weekly) {
+    this.Daily_Weekly = Daily_Weekly;
   }
 }

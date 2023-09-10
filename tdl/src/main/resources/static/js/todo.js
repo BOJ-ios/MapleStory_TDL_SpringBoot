@@ -1,19 +1,19 @@
 //! Todo 내용 업데이트
 function updateTodo(input) {
-  var newValue = input.value;
+  let newValue = input.value;
   console.log("new todo value: " + newValue);
-  var row = input.closest("tr"); // 현재 행 찾기
+  let row = input.closest("tr"); // 현재 행 찾기
   if (!row) {
     alert("오류 : 현재 행을 찾을 수 없습니다.");
     return;
   }
-  var id_select = row.querySelector("input[type='hidden']");
+  let id_select = row.querySelector("input[type='hidden']");
   if (!id_select) {
     alert("오류 : Todo ID를 찾을 수 없습니다.");
     return;
   }
-  var id = id_select.value;
-  var xhr = new XMLHttpRequest();
+  let id = id_select.value;
+  let xhr = new XMLHttpRequest();
   xhr.open("PUT", "/todo/updateTodoName", true);
   xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhr.onreadystatechange = function () {
@@ -30,21 +30,21 @@ function updateTodo(input) {
 
 //! Todo 초기화일 업데이트
 function dailyWeeklyChange(button) {
-  var text = button.textContent;
+  let text = button.textContent;
   console.log("현재 초기화일: " + text);
-  var newDailyWeekly = text !== "주간";
-  var row = button.closest("tr"); // 현재 행 찾기
+  let newDailyWeekly = text !== "주간";
+  let row = button.closest("tr"); // 현재 행 찾기
   if (!row) {
     alert("오류 : 현재 행을 찾을 수 없습니다.");
     return;
   }
-  var id_select = row.querySelector("input[type='hidden']");
+  let id_select = row.querySelector("input[type='hidden']");
   if (!id_select) {
     alert("오류 : Todo ID를 찾을 수 없습니다.");
     return;
   }
-  var id = id_select.value;
-  var xhr = new XMLHttpRequest();
+  let id = id_select.value;
+  let xhr = new XMLHttpRequest();
   xhr.open("PUT", "/todo/dailyWeeklyChange", true);
   xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhr.onreadystatechange = function () {
@@ -61,20 +61,20 @@ function dailyWeeklyChange(button) {
 }
 //! Todo 완료 박스 업데이트
 function updateTodoStatus(checkbox) {
-  var newStatus = checkbox.checked;
+  let newStatus = checkbox.checked;
   console.log("new todo status: " + newStatus);
-  var row = checkbox.closest("tr"); // 현재 행 찾기
+  let row = checkbox.closest("tr"); // 현재 행 찾기
   if (!row) {
     alert("오류 : 현재 행을 찾을 수 없습니다.");
     return;
   }
-  var id_select = row.querySelector("input[type='hidden']");
+  let id_select = row.querySelector("input[type='hidden']");
   if (!id_select) {
     alert("오류 : Todo ID를 찾을 수 없습니다.");
     return;
   }
-  var id = id_select.value;
-  var xhr = new XMLHttpRequest();
+  let id = id_select.value;
+  let xhr = new XMLHttpRequest();
   xhr.open("PUT", "/todo/updateTodoStatus", true);
   xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhr.onreadystatechange = function () {
@@ -91,20 +91,20 @@ function updateTodoStatus(checkbox) {
 
 //! Todo 삭제
 function deleteTodo(button) {
-  var row = button.closest("tr"); // 해당 버튼이 속한 행(tr) 가져오기
+  let row = button.closest("tr"); // 해당 버튼이 속한 행(tr) 가져오기
   if (!row) {
     alert("오류 : 현재 행을 찾을 수 없습니다.");
     return;
   }
-  var id_select = row.querySelector("input[type='hidden']");
+  let id_select = row.querySelector("input[type='hidden']");
   if (!id_select) {
     alert("오류 : Todo ID를 찾을 수 없습니다.");
     return;
   }
-  var id = id_select.value;
-  var confirmDelete = confirm("정말로 삭제하시겠습니까?");
+  let id = id_select.value;
+  let confirmDelete = confirm("정말로 삭제하시겠습니까?");
   if (confirmDelete) {
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
     xhr.open("DELETE", "/todo/deleteTodo", true);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.onreadystatechange = function () {
@@ -124,7 +124,7 @@ function deleteTodo(button) {
 //! Todo 생성
 function addNewTodo() {
   console.log("addNewTodo 클릭");
-  var xhr = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
   xhr.open("POST", "/todo/addNewTodo", true);
   xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhr.onreadystatechange = function () {

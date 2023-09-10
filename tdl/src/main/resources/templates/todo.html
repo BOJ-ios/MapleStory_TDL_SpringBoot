@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,21 +16,18 @@
     <h1>Todo List</h1>
     <div>
       <p id="clock"></p>
-      <form method="post" action="/save-character">
-        <label for="characterName">캐릭터 이름:</label>
-        <input type="text" id="characterName" name="characterName" required />
-        <button type="submit">등록</button>
-      </form>
+      
     </div>
+    <!-- !계정일퀘 -->
     <div class="width-auto-max">
-      <!-- 익몬 용가리 헤이븐 뭐 그런거 선택 -->
+      <p>계정일퀘</p>
       <div class="quest-imgs-box">
-        <!-- 퀘스트 토클 버튼 -->
         <div class="quest-data-wrap">
           <input type="hidden" th:value="1" />
           <img
             class="quest-img"
-            src="image/선택퀘/유니온.png"
+            src="image/계정일퀘/우르스.png"
+            alt="우르스"
             onclick="toggleImage(this)"
           />
         </div>
@@ -38,21 +35,121 @@
           <input type="hidden" th:value="1" />
           <img
             class="quest-img"
-            src="image/선택퀘/익몬.png"
+            src="image/계정일퀘/익몬.png"
+            alt="익몬"
+            onclick="toggleImage(this)"
+          />
+        </div>
+        <div class="quest-data-wrap">
+          <input type="hidden" th:value="1" />
+          <img
+            class="quest-img"
+            src="image/계정일퀘/몬파.png"
+            alt="몬파"
+            onclick="toggleImage(this)"
+          />
+        </div>
+        <div class="quest-data-wrap">
+          <input type="hidden" th:value="1" />
+          <img
+            class="quest-img"
+            src="image/계정일퀘/메엠.png"
+            alt="메엠"
+            onclick="toggleImage(this)"
+          />
+        </div>
+        <div class="quest-data-wrap">
+          <input type="hidden" th:value="1" />
+          <img
+            class="quest-img"
+            src="image/계정일퀘/유니온.png"
+            alt="유니온"
+            onclick="toggleImage(this)"
+          />
+        </div>
+        <div class="quest-data-wrap">
+          <input type="hidden" th:value="1" />
+          <img
+            class="quest-img"
+            src="image/계정일퀘/데일리기프트.png"
+            alt="데일리기프트"
+            onclick="toggleImage(this)"
+          />
+        </div>
+        <div class="quest-data-wrap">
+          <input type="hidden" th:value="1" />
+          <img
+            class="quest-img"
+            src="image/계정일퀘/전문기술.png"
+            alt="전문기술"
             onclick="toggleImage(this)"
           />
         </div>
       </div>
     </div>
-
+    <!-- !캐릭주퀘 -->
+    <div class="width-auto-max">
+      <p>캐릭 주퀘</p>
+      <div class="quest-imgs-box">
+        <div class="quest-data-wrap">
+          <input type="hidden" th:value="1" />
+          <img
+            class="quest-img"
+            src="image/캐릭주퀘/기계무덤.png"
+            alt="기계무덤"
+            onclick="toggleImage(this)"
+          />
+        </div>
+        <div class="quest-data-wrap">
+          <input type="hidden" th:value="1" />
+          <img
+            class="quest-img"
+            src="image/캐릭주퀘/희낙석.png"
+            alt="희낙석"
+            onclick="toggleImage(this)"
+          />
+        </div>
+        <div class="quest-data-wrap">
+          <input type="hidden" th:value="1" />
+          <img
+            class="quest-img"
+            src="image/캐릭주퀘/크리티아스.png"
+            alt="크리티아스"
+            onclick="toggleImage(this)"
+          />
+        </div>
+        <div class="quest-data-wrap">
+          <input type="hidden" th:value="1" />
+          <img
+            class="quest-img"
+            src="image/캐릭주퀘/무릉도장.png"
+            alt="무릉도장"
+            onclick="toggleImage(this)"
+          />
+        </div>
+        <div class="quest-data-wrap">
+          <input type="hidden" th:value="1" />
+          <img
+            class="quest-img"
+            src="image/캐릭주퀘/샤레니안.png"
+            alt="샤레니안"
+            onclick="toggleImage(this)"
+          />
+        </div>
+      </div>
+    </div>    
+    </div>
     <div class="simball-12 width-auto-max">
+      <!--! 아케인심볼 -->
       <div class="simball-6">
+        <p>아케인심볼</p>
         <div class="simball-3">
           <div simball-img-data-wrap>
             <input type="hidden" th:value="0" />
             <img
               class="simball"
               src="image/아케인심볼/여로.png"
+              alt="여로"
               onclick="toggleImage(this)"
             />
           </div>
@@ -60,14 +157,15 @@
             <input type="hidden" th:value="0" /><img
               class="simball"
               src="image/아케인심볼/츄츄.png"
+              alt="츄츄"
               onclick="toggleImage(this)"
             />
           </div>
-
           <div simball-img-data-wrap>
             <input type="hidden" th:value="0" /><img
               class="simball"
               src="image/아케인심볼/레헬른.png"
+              alt="레헬른"
               onclick="toggleImage(this)"
             />
           </div>
@@ -78,6 +176,7 @@
             <img
               class="simball"
               src="image/아케인심볼/아르카나.png"
+              alt="아르카나"
               onclick="toggleImage(this)"
             />
           </div>
@@ -86,6 +185,7 @@
             <img
               class="simball"
               src="image/아케인심볼/모라스.png"
+              alt="모라스"
               onclick="toggleImage(this)"
             />
           </div>
@@ -94,18 +194,22 @@
             <img
               class="simball"
               src="image/아케인심볼/에스페라.png"
+              alt="에스페라"
               onclick="toggleImage(this)"
             />
           </div>
         </div>
       </div>
+      <!--! 어센틱심볼 -->
       <div class="simball-6">
+        <p>어센틱심볼</p>
         <div class="simball-3">
           <div simball-img-data-wrap>
             <input type="hidden" th:value="0" />
             <img
               class="simball"
               src="image/어센틱심볼/세르니움.png"
+              alt="세르니움"
               onclick="toggleImage(this)"
             />
           </div>
@@ -114,6 +218,7 @@
             <img
               class="simball"
               src="image/어센틱심볼/아르크스.png"
+              alt="아르크스"
               onclick="toggleImage(this)"
             />
           </div>
@@ -122,6 +227,7 @@
             <img
               class="simball"
               src="image/어센틱심볼/오디움.png"
+              alt="오디움"
               onclick="toggleImage(this)"
             />
           </div>
@@ -132,6 +238,7 @@
             <img
               class="simball"
               src="image/어센틱심볼/도원경.png"
+              alt="도원경"
               onclick="toggleImage(this)"
             />
           </div>
@@ -140,6 +247,7 @@
             <img
               class="simball"
               src="image/어센틱심볼/아르테리아.png"
+              alt="아르테리아"
               onclick="toggleImage(this)"
             />
           </div>
@@ -148,54 +256,57 @@
             <img
               class="simball"
               src="image/어센틱심볼/카르시온.png"
+              alt="카르시온"
               onclick="toggleImage(this)"
             />
           </div>
         </div>
       </div>
     </div>
-    <!-- 니 알아서 추가 -->
-    <table>
-      <thead>
-        <tr>
-          <th>초기화</th>
-          <th>내용</th>
-          <th>완료?</th>
-          <th>삭제</th>
-          <th>
-            <button type="button" onclick="addNewTodo()">Add Todo</button>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr th:each="todo, todoStat : ${todoList}">
-          <td>
-            <button
-              type="button"
-              th:text="${todo.dailyWeekly ? '주간' : '일일'}"
-              onclick="dailyWeeklyChange(this)"
-            ></button>
-          </td>
-          <td>
-            <input
-              type="text"
-              th:value="${todo.value}"
-              onblur="updateTodo(this)"
-            />
-          </td>
-          <td>
-            <input
-              type="checkbox"
-              th:checked="${todo.status}"
-              onchange="updateTodoStatus(this)"
-            />
-          </td>
-          <td>
-            <input type="hidden" th:value="${todo.id}" />
-            <button type="button" onclick="deleteTodo(this)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="width-auto-max">
+      <table>
+        <caption>개인적 Todo List</caption>
+        <thead>
+          <tr>
+            <th>초기화</th>
+            <th>내용</th>
+            <th>완료?</th>
+            <th>삭제</th>
+            <th>
+              <button type="button" onclick="addNewTodo()">Add Todo</button>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="todo, todoStat : ${todoList}">
+            <td>
+              <button
+                type="button"
+                th:text="${todo.dailyWeekly ? '주간' : '일일'}"
+                onclick="dailyWeeklyChange(this)"
+              ></button>
+            </td>
+            <td>
+              <input
+                type="text"
+                th:value="${todo.value}"
+                onblur="updateTodo(this)"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                th:checked="${todo.status}"
+                onchange="updateTodoStatus(this)"
+              />
+            </td>
+            <td>
+              <input type="hidden" th:value="${todo.id}" />
+              <button type="button" onclick="deleteTodo(this)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </body>
 </html>
