@@ -8,12 +8,16 @@
     <title>-메-할일</title>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script src="/js/clickCharacter.js" defer></script>
     <link href="/css/base.css" rel="stylesheet" />
     <link href="/css/normalize.css" rel="stylesheet" />
   </head>
   <body>
     <div th:each="character : ${characterNames}">
-      <div th:text="${character}"></div>
+      <div class="character_Box" onclick="clickCharacter(this)">
+        <input type="hidden" th:value="${character}" />
+        <div th:text="${character}"></div>
+      </div>
     </div>
     <div>
       <form method="post" action="/save-character">
