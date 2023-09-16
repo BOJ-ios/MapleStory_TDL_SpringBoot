@@ -18,6 +18,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import maplestory.tdl.DataBase.QuestAccountDaily;
 import maplestory.tdl.DataBase.QuestAccountDailyRep;
+import maplestory.tdl.DataBase.QuestSimballRep;
+import maplestory.tdl.DataBase.QuestWeekly;
+import maplestory.tdl.DataBase.QuestWeeklyRep;
 import maplestory.tdl.DataBase.TodoList;
 import maplestory.tdl.DataBase.TodoRepository;
 
@@ -28,15 +31,20 @@ public class Todo_C {
   private TodoRepository todoRep;
   @Autowired
   private QuestAccountDailyRep qadRep;
+  @Autowired
+  private QuestWeeklyRep qwRep;
+  @Autowired
+  private QuestSimballRep sbRep;
 
   @GetMapping("/todo")
-  public String todo(HttpSession session, Model model) {
+  public String todo(HttpSession session, Model model, String character) {
     // *세션 UUID 확인 */
     if (session.getAttribute("UUID") == null) {
       return "invalid_access_pop";
     }
     String UUID = (String) session.getAttribute("UUID");
-
+    model.addAttribute("UUID", UUID);
+    model.addAttribute("character", character);
     // !계정일퀘
     QuestAccountDaily qad = qadRep.findByUUID(UUID).orElse(null);
     model.addAttribute("Urus", qad.getUrus());
@@ -47,9 +55,11 @@ public class Todo_C {
     model.addAttribute("Daily_Gift", qad.getDailyGift());
     model.addAttribute("Expertise", qad.getExpertise());
     model.addAttribute("Golden_Wagen", qad.getGoldenWagen());
-    // !캐릭일퀘
-
     // !캐릭주퀘
+    QuestWeeklyRep qwRep = qwRep.findByUUID(UUID).orElse(null);
+
+    // !캐릭심볼
+    QuestWeeklyRep sbRep = sbRep.findByUUID(UUID).orElse(null);
 
     // !잡다한 todo
     List<TodoList> todoList = todoRep.findAllByUUID(UUID);
