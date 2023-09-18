@@ -55,11 +55,11 @@ public class Todo_C {
     model.addAttribute("Daily_Gift", qad.getDailyGift());
     model.addAttribute("Expertise", qad.getExpertise());
     model.addAttribute("Golden_Wagen", qad.getGoldenWagen());
-    // !캐릭주퀘
-    QuestWeeklyRep qwRep = qwRep.findByUUID(UUID).orElse(null);
+    // // !캐릭주퀘
+    // QuestWeeklyRep qwRep = qwRep.findByUUID(UUID).orElse(null);
 
-    // !캐릭심볼
-    QuestWeeklyRep sbRep = sbRep.findByUUID(UUID).orElse(null);
+    // // !캐릭심볼
+    // QuestWeeklyRep sbRep = sbRep.findByUUID(UUID).orElse(null);
 
     // !잡다한 todo
     List<TodoList> todoList = todoRep.findAllByUUID(UUID);
