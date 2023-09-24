@@ -45,7 +45,7 @@ public class Character_C {
     return "select_character";
   }
 
-  // Todo 캐릭터 이름 중복 검사 필요
+  // Todo 캐릭터 PK를 ID로 변경
   @PostMapping("/save-character")
   public String saveCharacter(@RequestParam("characterName") String characterName, HttpSession session) {
     String UUID = (String) session.getAttribute("UUID");
